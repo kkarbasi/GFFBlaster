@@ -6,5 +6,6 @@ $ GFFBlaster [FASTA file name] [GFF file name]
 
 
 The gffbParser file is a simple parser for xml outputs of the GFFBlaster:
+
 Usage:
 $ gffbParser [Directory path of xml output files] 
