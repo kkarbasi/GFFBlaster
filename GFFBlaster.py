@@ -44,7 +44,8 @@ class GFFBlaster:
         self.seqGenes = self.gffData.split(geneSeqDel);
         self.seqGenes = self.seqGenes[1:]
         for i,dat in enumerate(self.seqGenes):
-            self.seqGenes[i] = self.seqGenes[i].rstrip('\n').lstrip('\n')
+            self.seqGenes[i] = self.seqGenes[i].lstrip('\n').rstrip('\n')
+            
             
     def getGeneCoordinates(self , seqNumber , geneNumber):
         '''
@@ -87,6 +88,8 @@ class GFFBlaster:
         return self.seqGenes[i]
         
     def getNumberOfGenesInSeq(self, seqNumber):
+        if not self.getSeqGenes(seqNumber):
+            return 0
         return len(self.getSeqGenes(seqNumber).split('\n'))
     
     def getNumberOfSeqs(self):
