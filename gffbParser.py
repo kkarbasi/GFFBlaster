@@ -28,6 +28,8 @@ if __name__ == "__main__":
            blastRecFile = open(parseDir + "\\" + "my_blast-seq-" + str(i) + "-gene-" + str(j) + ".xml");
            blastRecord = NCBIXML.read(blastRecFile);
            if blastRecord.alignments:
-               print "Gene " + str(j) + " of Sequence " + str(i)+ " ------> "  +  blastRecord.alignments[0].title 
-    
+               outString = "Gene " + str(j) + " of Sequence " + str(i)+ " ------> "  +  blastRecord.alignments[0].title 
+               if blastRecord.alignments[0].hsps:
+                   outString = outString + "-------" +"identities: "+ str(blastRecord.alignments[0].hsps[0].identities) + "/" + str(blastRecord.alignments[0].hsps[0].align_length)
+           print outString
     
