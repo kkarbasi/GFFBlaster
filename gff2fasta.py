@@ -6,7 +6,6 @@ Created on Mon Dec 07 14:23:27 2015
 """
 
 from GFFBlaster import GFFBlaster
-import textwrap
 import sys
 import os.path
 
@@ -26,10 +25,14 @@ else:
     
 gffb = GFFBlaster(dataF , dataG);
 
+def fill(text, width=70):
+    return '\n'.join(text[i:i+width] for i in
+                     range(0, len(text), width))
+
 for i in range(gffb.getNumberOfSeqs()):
     for j in range(gffb.getNumberOfGenesInSeq(i)):
         print ">gi|"+sys.argv[1]+"|Gene "+ str(j)+ " of contig " + str(i)
-        print textwrap.fill(gffb.getGene(i,j),80)
+        print fill(gffb.getGene(i,j),80)
 
         
         
