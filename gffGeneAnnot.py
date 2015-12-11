@@ -45,10 +45,11 @@ if __name__ == "__main__":
         for j in range(nGenes[i]):
            blastRecFile = open(parseDir + "\\" + "my_blast-seq-" + str(i) + "-gene-" + str(j) + ".xml");
            blastRecord = NCBIXML.read(blastRecFile);
+           #and "complete genome" not in blastRecord.alignments[0].title
            if blastRecord.alignments:
                start, stop = gffb.getGeneCoordinates(i,j);
                outString = "Contig " + str(i) + "|Start: " + str(start) + "|Stop: " + str(stop)+ " |------> "  +  blastRecord.alignments[0].title 
                if blastRecord.alignments[0].hsps:
-                   outString = outString + "-------" +"identities: "+ str(blastRecord.alignments[0].hsps[0].identities) + "/" + str(blastRecord.alignments[0].hsps[0].align_length)
-           print outString
+                   outString = outString + "|" +"identities: "+ str(blastRecord.alignments[0].hsps[0].identities) + "/" + str(blastRecord.alignments[0].hsps[0].align_length)
+               print outString
     
